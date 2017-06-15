@@ -31,7 +31,6 @@ import org.mule.runtime.core.api.util.IOUtils;
 import org.mule.runtime.http.api.client.HttpClient;
 import org.mule.runtime.http.api.domain.ParameterMap;
 import org.mule.runtime.http.api.domain.entity.ByteArrayHttpEntity;
-import org.mule.runtime.http.api.domain.entity.InputStreamHttpEntity;
 import org.mule.runtime.http.api.domain.message.request.HttpRequest;
 import org.mule.runtime.http.api.domain.message.request.HttpRequestBuilder;
 import org.mule.runtime.http.api.domain.message.response.HttpResponse;
@@ -133,7 +132,7 @@ public abstract class AbstractOAuthDancer implements Startable, Stoppable {
         headers.put(headerName, response.getHeaderValues(headerName));
       }
 
-      String readBody = IOUtils.toString(((InputStreamHttpEntity) response.getEntity()).getInputStream());
+      String readBody = IOUtils.toString(response.getEntity().getContent());
       Object body = readBody;
       if (responseContentType.withoutParameters().matches(APPLICATION_X_WWW_FORM_URLENCODED)) {
         body = decodeUrlEncodedBody(readBody, responseContentType.getCharset().orElse(encoding));

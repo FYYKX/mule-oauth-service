@@ -109,7 +109,7 @@ public class DancerConfigTestCase extends AbstractMuleContextTestCase {
 
     final HttpResponse httpResponse = mock(HttpResponse.class);
     final InputStreamHttpEntity httpEntity = mock(InputStreamHttpEntity.class);
-    when(httpEntity.getInputStream()).thenReturn(new ReaderInputStream(new StringReader("")));
+    when(httpEntity.getContent()).thenReturn(new ReaderInputStream(new StringReader("")));
     when(httpResponse.getEntity()).thenReturn(httpEntity);
     when(httpClient.send(any(), anyInt(), anyBoolean(), any())).thenReturn(httpResponse);
   }

@@ -56,7 +56,6 @@ import org.mule.runtime.http.api.client.HttpClient;
 import org.mule.runtime.http.api.domain.ParameterMap;
 import org.mule.runtime.http.api.domain.entity.ByteArrayHttpEntity;
 import org.mule.runtime.http.api.domain.entity.EmptyHttpEntity;
-import org.mule.runtime.http.api.domain.entity.InputStreamHttpEntity;
 import org.mule.runtime.http.api.domain.message.request.HttpRequest;
 import org.mule.runtime.http.api.domain.message.response.HttpResponse;
 import org.mule.runtime.http.api.domain.message.response.HttpResponseBuilder;
@@ -373,8 +372,7 @@ public class DefaultAuthorizationCodeOAuthDancer extends AbstractOAuthDancer imp
 
   private String readBody(final HttpRequest request) {
     try {
-      InputStreamHttpEntity inputStreamEntity = request.getInputStreamEntity();
-      return inputStreamEntity != null ? IOUtils.toString(inputStreamEntity.getInputStream()) : "";
+      return IOUtils.toString(request.getEntity().getContent());
     } catch (IOException e) {
       throw new MuleRuntimeException(e);
     }
