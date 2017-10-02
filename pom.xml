@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.mule.services</groupId>
         <artifactId>mule-core-services-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0-greenarrow</version>
     </parent>
 
     <name>OAuth Service Implementation</name>
