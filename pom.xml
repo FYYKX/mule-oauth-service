@@ -12,7 +12,7 @@
 
     <artifactId>mule-service-oauth</artifactId>
     <packaging>mule-service</packaging>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.1-DRY-RUN</version>
 
     <properties>
         <formatterConfigPath>formatter.xml</formatterConfigPath>
