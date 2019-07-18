@@ -25,10 +25,9 @@ import org.mule.runtime.oauth.api.ClientCredentialsOAuthDancer;
 import org.mule.runtime.oauth.api.exception.RequestAuthenticationException;
 import org.mule.runtime.oauth.api.exception.TokenNotFoundException;
 import org.mule.runtime.oauth.api.exception.TokenUrlResponseException;
+import org.mule.runtime.oauth.api.listener.ClientCredentialsListener;
 import org.mule.runtime.oauth.api.state.DefaultResourceOwnerOAuthContext;
 import org.mule.runtime.oauth.api.state.ResourceOwnerOAuthContext;
-
-import org.slf4j.Logger;
 
 import java.nio.charset.Charset;
 import java.util.HashMap;
@@ -39,6 +38,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Function;
+
+import org.slf4j.Logger;
 
 /**
  * Provides OAuth dance support for client-credentials grant-type.
@@ -168,4 +169,13 @@ public class DefaultClientCredentialsOAuthDancer extends AbstractOAuthDancer imp
     return getContextForResourceOwner(DEFAULT_RESOURCE_OWNER_ID);
   }
 
+  @Override
+  public void addListener(ClientCredentialsListener listener) {
+    doAddListener(listener);
+  }
+
+  @Override
+  public void removeListener(ClientCredentialsListener listener) {
+    doRemoveListener(listener);
+  }
 }
